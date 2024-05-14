@@ -11,37 +11,31 @@ gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 document.addEventListener("DOMContentLoaded", function () {
   var tl = gsap.timeline();
 
-  tl.from(".loader-wrapper", {
-    duration: 0.5,
-    y: "-100%",
-    ease: "power1.out",
-  })
-    .to(
-      ".loader",
-      {
-        duration: 0.5,
-        y: "-100vh",
-        ease: "power1.out",
+  tl.to(
+    ".loader",
+    {
+      duration: 0.5,
+      y: "-100vh",
+      ease: "power1.out",
+    },
+    "+=0.5"
+  ).to(
+    ".loader-wrapper",
+    {
+      duration: 0.5,
+      opacity: 0,
+      onComplete: function () {
+        document.querySelector(".loader-wrapper").style.display = "none";
       },
-      "+=0.5"
-    )
-    .to(
-      ".loader-wrapper",
-      {
-        duration: 0.5,
-        opacity: 0,
-        onComplete: function () {
-          document.querySelector(".loader-wrapper").style.display = "none";
-        },
-      },
-      "+=0.5"
-    );
+    },
+    "+=0.5"
+  );
 });
 //loader
 // bee
 
 gsap.set("#motionSVG", { scale: 0.85, autoAlpha: 1 });
-gsap.set("#bee", { transformOrigin: "50% 50%", scaleX: -1 });
+gsap.set("#bee", { transformOrigin: "10% 50%", scaleX: -1 });
 let getProp = gsap.getProperty("#motionSVG"),
   flippedX = false,
   flippedY = false;
