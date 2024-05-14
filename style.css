@@ -224,3 +224,92 @@ footer * {
   grid-area: span 1 / span 1 / span 1 / 5;
   align-self: end;
 }
+
+/* test */
+body {
+  height: 300vh;
+  background-color: #111;
+  color: white;
+  overflow-x: hidden;
+}
+
+h1,
+h2 {
+  font-weight: 400;
+  max-width: none;
+}
+
+.comparisonSection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding-bottom: 56.25%; /* to maintain aspect ratio (responsive!) */
+}
+.comparisonImage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.comparisonImage::before {
+  content: ""; /* Necessary for the pseudo-element to show */
+  position: absolute; /* Position it over the .comparisonImage element */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+}
+
+.afterImage {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  transform: translate(100%, 0px);
+}
+.afterImage img {
+  transform: translate(-100%, 0px);
+}
+
+.comparisonImage img {
+  width: 100%;
+  height: 100%;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+}
+
+/* loader */
+
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: lightpink; /* Light pink background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid purple; /* Blue */
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  animation: spin 2s linear infinite;
+  position: fixed;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
