@@ -20,15 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var tl = gsap.timeline();
 
-  tl.to(".loader", {
-    duration: 1.5,
-    y: "100vh",
-    ease: "power1.out",
+  tl.to(".loader-wrapper", {
+    duration: 3.5,
+    ease: "power1.inOut",
+    opacity: 0,
   })
-    .to(".loader-wrapper", {
-      duration: 3.5,
-      opacity: 0,
-    })
     .to("#bee-scroll", {
       duration: 0.5,
       opacity: 1,
@@ -69,19 +65,27 @@ document.addEventListener("DOMContentLoaded", function () {
   // Get the images
   let images = document.querySelectorAll(".image-path");
 
-  // Create a new ScrollTrigger for each image
-  images.forEach((image, index) => {
-    tl.to(image, {
-      duration: 10,
-      ease: "power1.inOut",
-      motionPath: {
-        path: "#motionPath",
-        align: "#motionPath",
-        alignOrigin: [0.5, 0.5],
-        start: index / images.length, // Start position along the path (0-1)
-        end: (index + 1) / images.length, // End position along the path (0-1)
+  // Initial animation to move the images to the start of the path
+  tl.to(images, {
+    duration: 1,
+    y: "100vh", // Move the images off the page
+    ease: "power1.inOut",
+    stagger: function () {
+      return Math.random() * 0.5;
+    },
+  });
+
+  tl.to(images, {
+    duration: 3,
+    ease: "power1.inOut",
+    motionPath: {
+      path: "#motionPath",
+      align: "#motionPath",
+      alignOrigin: [0.5, 0.5],
+      end: function (index, target, targets) {
+        return (index + 1) / targets.length;
       },
-    });
+    },
   });
 });
 /* 
