@@ -29,13 +29,14 @@ document.addEventListener("DOMContentLoaded", function () {
         start: "top center",
         end: "bottom center",
         scrub: 0.7,
-        markers: false,
+        markers: true,
         onUpdate: (self) => {
           let rotation = getProp("rotation"),
             flipY = Math.abs(rotation) > 90,
             flipX = self.direction === 1;
           if (flipY !== flippedY || flipX !== flippedX) {
-            gsap.to("#bee", {
+            // flips the images, not the bee. to flip bee, use #bee
+            gsap.to(".image-path", {
               scaleY: flipY ? -1 : 1,
               scaleX: flipX ? -1 : 1,
               duration: 0.25,
