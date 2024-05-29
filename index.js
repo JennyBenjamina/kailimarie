@@ -16,76 +16,73 @@ document.addEventListener("DOMContentLoaded", function () {
   let getProp = gsap.getProperty("#motionSVG"),
     flippedX = false,
     flippedY = false;
-
-  gsap.to("#motionSVG", {
-    scrollTrigger: {
-      trigger: "#motionPath",
-      start: "top center",
-      end: "bottom center",
-      scrub: 0.7,
-      markers: false,
-      onUpdate: (self) => {
-        let rotation = getProp("rotation"),
-          flipY = Math.abs(rotation) > 90,
-          flipX = self.direction === 1;
-        if (flipY !== flippedY || flipX !== flippedX) {
-          gsap.to("#bee", {
-            scaleY: flipY ? -1 : 1,
-            scaleX: flipX ? -1 : 1,
-            duration: 0.25,
-          });
-          flippedY = flipY;
-          flippedX = flipX;
-        }
-      },
-    },
-    duration: 10,
-    ease: pathEase("#motionPath", { smooth: true }), // <-- MAGIC!
-    immediateRender: true,
-    motionPath: {
-      path: "#motionPath",
-      align: "#motionPath",
-      alignOrigin: [0.5, 0.5],
-      autoRotate: 0,
-    },
-  });
-
-  /* 
-Helper function that returns an ease that bends time to ensure the target moves on the y axis in a relatively steady fashion in relation to the viewport (assuming the progress of the tween is linked linearly to the scroll position). Requires MotionPathPlugin of course.
-You can optionally pass in a config option with any of these properties: 
-  - smooth: if true, the target can drift slightly in order to smooth out the movement. This is especially useful if the path curves backwards at times. It prevents super-fast motions at that point. You can define it as a number (defaults to 7) indicating how much to smooth it.
-  - precision: number (defaults to 1) controlling the sampling size along the path. The higher the precision, the more accurate but the more processing.
-  - axis: "y" or "x" ("y" by default)
-*/
-
   //bee
 
   var tl = gsap.timeline();
 
-  tl.to(
-    ".loader",
-    {
-      duration: 0.5,
-      y: "-100vh",
-      ease: "power1.out",
-      onComplete: function () {
-        document.querySelector(".loader").style.display = "none";
-      },
-    },
-    "+=0.5"
-  )
-    .to(
-      ".loader-wrapper",
-      {
-        duration: 0.5,
-        opacity: 0,
-      },
-      "-=0.5"
-    )
+  tl.to(".loader", {
+    duration: 1.5,
+    y: "100vh",
+    ease: "power1.out",
+  })
+    .to(".loader-wrapper", {
+      duration: 3.5,
+      opacity: 0,
+    })
     .to("#bee-scroll", {
       duration: 0.5,
       opacity: 1,
+    })
+    .to("#motionSVG", {
+      scrollTrigger: {
+        trigger: "#motionPath",
+        start: "top center",
+        end: "bottom center",
+        scrub: 0.7,
+        markers: false,
+        onUpdate: (self) => {
+          let rotation = getProp("rotation"),
+            flipY = Math.abs(rotation) > 90,
+            flipX = self.direction === 1;
+          if (flipY !== flippedY || flipX !== flippedX) {
+            gsap.to("#bee", {
+              scaleY: flipY ? -1 : 1,
+              scaleX: flipX ? -1 : 1,
+              duration: 0.25,
+            });
+            flippedY = flipY;
+            flippedX = flipX;
+          }
+        },
+      },
+      duration: 10,
+      ease: pathEase("#motionPath", { smooth: true }), // <-- MAGIC!
+      immediateRender: true,
+      motionPath: {
+        path: "#motionPath",
+        align: "#motionPath",
+        alignOrigin: [0.5, 0.5],
+        autoRotate: 0,
+      },
     });
+
+  // Get the images
+  let images = document.querySelectorAll(".image-path");
+
+  // Create a new ScrollTrigger for each image
+  images.forEach((image, index) => {
+    tl.to(image, {
+      duration: 10,
+      ease: "power1.inOut",
+      motionPath: {
+        path: "#motionPath",
+        align: "#motionPath",
+        alignOrigin: [0.5, 0.5],
+        start: index / images.length, // Start position along the path (0-1)
+        end: (index + 1) / images.length, // End position along the path (0-1)
+      },
+    });
+  });
 });
 /* 
 Helper function that returns an ease that bends time to ensure the target moves on the y axis in a relatively steady fashion in relation to the viewport (assuming the progress of the tween is linked linearly to the scroll position). Requires MotionPathPlugin of course.

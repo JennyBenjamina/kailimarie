@@ -16,12 +16,18 @@ body {
   z-index: 1;
   background: #fff;
   font-family: sans-serif;
-  background: linear-gradient(
+  /* background: linear-gradient(
     120deg,
     var(--primary-color) 13.57%,
     var(--secondary-color) 98.38%
-  );
+  ); */
   scroll-behavior: none;
+}
+
+.spacer {
+  position: relative;
+  height: 50vh;
+  width: 100%;
 }
 
 .title {
@@ -78,10 +84,6 @@ body {
   &:nth-child(4) {
     background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
   }
-}
-
-.spacer {
-  height: 70vh;
 }
 
 @media (max-width: 480px) {
@@ -237,7 +239,7 @@ footer * {
 
 /* test */
 body {
-  height: 300vh;
+  /* height: 300vh; */
   background-color: #111;
   color: white;
   overflow-x: hidden;
@@ -335,10 +337,7 @@ h2 {
   margin-top: 100vh;
 }
 
-#image1,
-#image2,
-#image3 {
+.image-path {
   width: 250px;
-  height: 400px;
-  border-radius: 50%;
+  height: 250px;
 }
