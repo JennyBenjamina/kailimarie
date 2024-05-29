@@ -333,11 +333,13 @@ h2 {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10000;
+  z-index: 4;
   margin-top: 100vh;
 }
 
 .image-path {
   width: 250px;
   height: 250px;
+  z-index: 500;
+  position: relative;
 }

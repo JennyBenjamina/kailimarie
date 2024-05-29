@@ -4,19 +4,13 @@ import { Flip } from "gsap/Flip";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
-//loader
-
-// GSAP animations
-
 document.addEventListener("DOMContentLoaded", function () {
-  // bee
   gsap.set("#motionSVG", { scale: 0.85, autoAlpha: 1 });
   gsap.set("#bee", { transformOrigin: "10% 50%", scaleX: -1 });
 
   let getProp = gsap.getProperty("#motionSVG"),
     flippedX = false,
     flippedY = false;
-  //bee
 
   var tl = gsap.timeline();
 
