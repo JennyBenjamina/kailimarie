@@ -29,21 +29,47 @@ document.addEventListener("DOMContentLoaded", function () {
         start: "top center",
         end: "bottom center",
         scrub: 0.7,
-        markers: true,
+        markers: false,
         onUpdate: (self) => {
           let rotation = getProp("rotation"),
             flipY = Math.abs(rotation) > 90,
             flipX = self.direction === 1;
-          if (flipY !== flippedY || flipX !== flippedX) {
-            // flips the images, not the bee. to flip bee, use #bee
-            gsap.to(".image-path", {
-              scaleY: flipY ? -1 : 1,
-              scaleX: flipX ? -1 : 1,
-              duration: 0.25,
-            });
-            flippedY = flipY;
-            flippedX = flipX;
-          }
+
+          // if (flipY !== flippedY || flipX !== flippedX) {
+          // Get the position of the #motionSVG
+          let svgPos = document
+            .querySelector("#motionSVG")
+            .getBoundingClientRect();
+
+          // Get all the images
+          let images = document.querySelectorAll(".image-path");
+
+          // Find the image closest to the #motionSVG
+          let closestImage = [...images].reduce((closest, image) => {
+            let imagePos = image.getBoundingClientRect();
+            let svgDistance = Math.hypot(
+              svgPos.x - imagePos.x,
+              svgPos.y - imagePos.y
+            );
+            let closestDistance = closest
+              ? Math.hypot(svgPos.x - closest.x, svgPos.y - closest.y)
+              : Infinity;
+            console.log("imgpos", imagePos);
+            return svgDistance < closestDistance ? image : closest;
+          }, null);
+
+          console.log("svgpos", svgPos);
+
+          // Flip the closest image
+          gsap.to(closestImage, {
+            scaleY: flipY ? -1 : 1,
+            scaleX: flipX ? -1 : 1,
+            duration: 1,
+          });
+
+          flippedY = flipY;
+          flippedX = flipX;
+          // }
         },
       },
       duration: 10,
