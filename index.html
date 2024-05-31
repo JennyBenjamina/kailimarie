@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kaili Marie</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <!-- loader -->
@@ -130,34 +136,88 @@
       </g>
     </svg>
     <!-- bee  -->
-    <div style="width: 100%; height: 100vh; margin: 0 auto">
-      <div class="hero">
-        <img
-          id="self"
-          class="author-img"
-          src="images/self.png"
-          alt="Kaili Marie"
-        />
-        <p class="author-info">
-          Kaili Marie Britos is a writer and artist. She is the author of the
-          poetry collection Scales, and the book of Poems, Ho'owiliwili. She is
-          also the creator of the illustrated book, Kiha Wahine. She is a
-          graduate of the University of Hawaii at Manoa.
-        </p>
+    <div
+      style="
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        position: absolute;
+        top: 0;
+      "
+    >
+      <div class="container-fluid" style="z-index: -1; position: absolute">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <img
+              id="self"
+              class="author-img"
+              src="images/self.png"
+              alt="Kaili Marie"
+            />
+          </div>
+          <div class="col-md-6 col-12 text-md-start text-center">
+            <div
+              class="d-md-flex align-items-md-center h-100"
+              style="max-width: 800px"
+            >
+              <p class="author-info">
+                Kaili Marie Britos is a writer and artist. She is the author of
+                the poetry collection Scales, and the book of Poems,
+                Ho'owiliwili. She is also the creator of the illustrated book,
+                Kiha Wahine. She is a graduate of the University of Hawaii at
+                Manoa.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <img class="image-path" src="images/1.png" alt="Image 1" />
-      <img class="image-path" src="images/2.png" alt="Image 2" />
-      <img class="image-path" src="images/3.png" alt="Image 3" />
-      <img class="image-path" src="images/4.png" alt="Image 1" />
-      <img class="image-path" src="images/5.png" alt="Image 2" />
-      <img class="image-path" src="images/6.png" alt="Image 3" />
-      <img class="image-path" src="images/7.png" alt="Image 1" />
-      <img class="image-path" src="images/8.png" alt="Image 2" />
-      <img class="image-path" src="images/9.png" alt="Image 3" />
-      <img class="image-path" src="images/10.png" alt="Image 1" />
-      <img class="image-path" src="images/11.png" alt="Image 2" />
-      <img class="image-path" src="images/12.png" alt="Image 3" />
-      <img class="image-path" src="images/13.png" alt="Image 3" />
+      <div class="row">
+        <div class="col-sm-3">
+          <img class="image-path" src="images/1.png" alt="Image 1" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/2.png" alt="Image 2" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/3.png" alt="Image 3" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/4.png" alt="Image 4" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <img class="image-path" src="images/5.png" alt="Image 5" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/6.png" alt="Image 6" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/7.png" alt="Image 7" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/8.png" alt="Image 8" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <img class="image-path" src="images/9.png" alt="Image 9" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/10.png" alt="Image 10" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/11.png" alt="Image 11" />
+        </div>
+        <div class="col-sm-3">
+          <img class="image-path" src="images/12.png" alt="Image 12" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <img class="image-path" src="images/13.png" alt="Image 13" />
+        </div>
+      </div>
     </div>
 
     <div class="spacer"></div>
@@ -201,5 +261,10 @@
       </div>
     </footer>
     <script src="dist/bundle.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

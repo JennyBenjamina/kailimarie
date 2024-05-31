@@ -14,7 +14,7 @@
 body {
   position: relative;
   z-index: 1;
-  background: #fff;
+  background: #1b0c1a !important;
   font-family: sans-serif;
   /* background: linear-gradient(
     120deg,
@@ -353,9 +353,10 @@ h2 {
 }
 
 .author-img {
-  opacity: 0.05;
+  position: relative;
+  opacity: 0.1;
   top: 0;
-  right: 0;
+  left: 0;
   width: auto;
   height: 100vh;
   z-index: -1;
@@ -364,10 +365,11 @@ h2 {
 .author-info {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 800px; */
+  /* margin: 0 auto; */
   font-size: 2rem;
   line-height: 1.5;
-  text-align: left;
   padding: 20px;
+  color: white;
+  width: 100%;
 }
