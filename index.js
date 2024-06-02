@@ -5,109 +5,111 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 document.addEventListener("DOMContentLoaded", function () {
-  gsap.set("#motionSVG", { scale: 0.85, autoAlpha: 1 });
-  gsap.set("#bee", { transformOrigin: "10% 50%", scaleX: -1 });
+  if (window.matchMedia("(min-width: 768px)").matches) {
+    gsap.set("#motionSVG", { scale: 0.85, autoAlpha: 1 });
+    gsap.set("#bee", { transformOrigin: "10% 50%", scaleX: -1 });
 
-  let getProp = gsap.getProperty("#motionSVG"),
-    flippedX = false,
-    flippedY = false;
+    let getProp = gsap.getProperty("#motionSVG"),
+      flippedX = false,
+      flippedY = false;
 
-  var tl = gsap.timeline();
+    var tl = gsap.timeline();
 
-  tl.to(".loader-wrapper", {
-    duration: 3.5,
-    ease: "power1.inOut",
-    opacity: 0,
-  })
-    .to("#bee-scroll", {
-      duration: 0.5,
-      opacity: 1,
+    tl.to(".loader-wrapper", {
+      duration: 3.5,
+      ease: "power1.inOut",
+      opacity: 0,
     })
-    .to("#motionSVG", {
-      scrollTrigger: {
-        trigger: "#motionPath",
-        start: "top center",
-        end: "bottom center",
-        scrub: 0.7,
-        markers: false,
-        onUpdate: (self) => {
-          let rotation = getProp("rotation"),
-            flipY = Math.abs(rotation) > 90,
-            flipX = self.direction === 1;
+      .to("#bee-scroll", {
+        duration: 0.5,
+        opacity: 1,
+      })
+      .to("#motionSVG", {
+        scrollTrigger: {
+          trigger: "#motionPath",
+          start: "top center",
+          end: "bottom center",
+          scrub: 0.7,
+          markers: false,
+          onUpdate: (self) => {
+            let rotation = getProp("rotation"),
+              flipY = Math.abs(rotation) > 90,
+              flipX = self.direction === 1;
 
-          // if (flipY !== flippedY || flipX !== flippedX) {
-          // Get the position of the #motionSVG
-          let svgPos = document
-            .querySelector("#motionSVG")
-            .getBoundingClientRect();
+            // if (flipY !== flippedY || flipX !== flippedX) {
+            // Get the position of the #motionSVG
+            let svgPos = document
+              .querySelector("#motionSVG")
+              .getBoundingClientRect();
 
-          // Get all the images
-          let images = document.querySelectorAll(".image-path");
+            // Get all the images
+            let images = document.querySelectorAll(".image-path");
 
-          // Find the image closest to the #motionSVG
-          let closestImage = [...images].reduce((closest, image) => {
-            let imagePos = image.getBoundingClientRect();
-            let svgDistance = Math.hypot(
-              svgPos.x - imagePos.x,
-              svgPos.y - imagePos.y
-            );
-            let closestDistance = closest
-              ? Math.hypot(svgPos.x - closest.x, svgPos.y - closest.y)
-              : Infinity;
-            console.log("imgpos", imagePos);
-            return svgDistance < closestDistance ? image : closest;
-          }, null);
+            // Find the image closest to the #motionSVG
+            let closestImage = [...images].reduce((closest, image) => {
+              let imagePos = image.getBoundingClientRect();
+              let svgDistance = Math.hypot(
+                svgPos.x - imagePos.x,
+                svgPos.y - imagePos.y
+              );
+              let closestDistance = closest
+                ? Math.hypot(svgPos.x - closest.x, svgPos.y - closest.y)
+                : Infinity;
+              console.log("imgpos", imagePos);
+              return svgDistance < closestDistance ? image : closest;
+            }, null);
 
-          console.log("svgpos", svgPos);
+            console.log("svgpos", svgPos);
 
-          // Flip the closest image
-          gsap.to(closestImage, {
-            scaleY: flipY ? -1 : 1,
-            scaleX: flipX ? -1 : 1,
-            duration: 1,
-          });
+            // Flip the closest image
+            gsap.to(closestImage, {
+              scaleY: flipY ? -1 : 1,
+              scaleX: flipX ? -1 : 1,
+              duration: 1,
+            });
 
-          flippedY = flipY;
-          flippedX = flipX;
-          // }
+            flippedY = flipY;
+            flippedX = flipX;
+            // }
+          },
         },
+        duration: 10,
+        ease: pathEase("#motionPath", { smooth: true }), // <-- MAGIC!
+        immediateRender: true,
+        motionPath: {
+          path: "#motionPath",
+          align: "#motionPath",
+          alignOrigin: [0.5, 0.5],
+          autoRotate: 0,
+        },
+      });
+
+    // Get the images
+    let images = document.querySelectorAll(".image-path");
+
+    // Initial animation to move the images to the start of the path
+    tl.to(images, {
+      duration: 1,
+      y: "100vh", // Move the images off the page
+      ease: "power1.inOut",
+      stagger: function () {
+        return Math.random() * 0.5;
       },
-      duration: 10,
-      ease: pathEase("#motionPath", { smooth: true }), // <-- MAGIC!
-      immediateRender: true,
+    });
+
+    tl.to(images, {
+      duration: 3,
+      ease: "power1.inOut",
       motionPath: {
         path: "#motionPath",
         align: "#motionPath",
         alignOrigin: [0.5, 0.5],
-        autoRotate: 0,
+        end: function (index, target, targets) {
+          return (index + 1) / targets.length;
+        },
       },
     });
-
-  // Get the images
-  let images = document.querySelectorAll(".image-path");
-
-  // Initial animation to move the images to the start of the path
-  tl.to(images, {
-    duration: 1,
-    y: "100vh", // Move the images off the page
-    ease: "power1.inOut",
-    stagger: function () {
-      return Math.random() * 0.5;
-    },
-  });
-
-  tl.to(images, {
-    duration: 3,
-    ease: "power1.inOut",
-    motionPath: {
-      path: "#motionPath",
-      align: "#motionPath",
-      alignOrigin: [0.5, 0.5],
-      end: function (index, target, targets) {
-        return (index + 1) / targets.length;
-      },
-    },
-  });
+  }
 });
 /* 
 Helper function that returns an ease that bends time to ensure the target moves on the y axis in a relatively steady fashion in relation to the viewport (assuming the progress of the tween is linked linearly to the scroll position). Requires MotionPathPlugin of course.
