@@ -372,3 +372,7 @@ h2 {
 .container-img {
   position: absolute;
 }
+
+.row > * {
+  padding: 0 !important;
+}
