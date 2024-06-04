@@ -138,6 +138,7 @@ label {
 .navbar {
   position: fixed !important;
   width: 100%;
+  z-index: 100000;
 }
 
 .navbar__container {
@@ -369,10 +370,32 @@ h2 {
   width: 100%;
 }
 
+/* .content-wrapper {
+  height: auto;
+  position: relative;
+} */
+
 .container-img {
   position: absolute;
 }
 
 .row > * {
   padding: 0 !important;
+}
+
+@media screen and (max-width: 575px) {
+  .container-img {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .footer_component {
+    position: relative;
+  }
+
+  #bee-scroll {
+    display: none;
+  }
 }
