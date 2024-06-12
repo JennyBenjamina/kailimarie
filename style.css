@@ -183,7 +183,7 @@ label {
 
 .footer_component {
   color: var(--white);
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   left: 0;
   right: 0;
@@ -398,4 +398,18 @@ h2 {
   #bee-scroll {
     display: none;
   }
+}
+
+/* card */
+
+.books {
+  /* background-color: hotpink; */
+}
+
+.card {
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: lightpink !important;
+  border: none !important;
 }
