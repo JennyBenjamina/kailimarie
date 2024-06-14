@@ -13,13 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return response.json();
     })
     .then((data) => {
-      // console.log(data); // Process your data here
-      // document.getElementById("dataDisplay").innerText = JSON.stringify(
-      //   data.data[0],
-      //   null,
-      //   2
-      // ); // Displaying data in <div>
-
       const container = document.getElementById("dataDisplay"); // Get the container where you want to display the images
       container.innerHTML = ""; // Clear previous content
 
