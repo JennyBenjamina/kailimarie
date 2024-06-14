@@ -4,7 +4,7 @@
   "description": "Kaili Marie Website",
   "main": "index.js",
   "scripts": {
-    "start": "serve -s .",
+    "start": "npx serve -s .",
     "dev": "webpack --mode development",
     "build:digitalocean": "npm install --production=false && npm run build && npm ci",
     "build": "webpack --mode production"
