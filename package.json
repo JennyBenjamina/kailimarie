@@ -6,6 +6,7 @@
   "scripts": {
     "start": "serve -s .",
     "dev": "webpack --mode development",
+    "build:digitalocean": "npm install --production=false && npm run build && npm ci",
     "build": "webpack --mode production"
   },
   "author": "Jenny Lee",
