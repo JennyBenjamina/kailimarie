@@ -15,7 +15,7 @@ body {
   position: relative;
   z-index: 1;
   background: #1b0c1a !important;
-  font-family: sans-serif;
+  font-family: "Petit Formal Script", cursive !important;
   /* background: linear-gradient(
     120deg,
     var(--primary-color) 13.57%,
@@ -360,8 +360,8 @@ h2 {
 }
 
 .author-info {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", */
+  /* "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
   /* max-width: 800px; */
   /* margin: 0 auto; */
   line-height: 1.5;
@@ -412,4 +412,8 @@ h2 {
   margin: 0 auto;
   background-color: lightpink !important;
   border: none !important;
+}
+
+.square {
+  aspect-ratio: 1 / 1;
 }

@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
       data.data.slice(0, 4).forEach((item) => {
         // Loop through the first 4 items
         const colDiv = document.createElement("div"); // Create a new div element
-        colDiv.className = "col-md-3"; // Set the class name
+        colDiv.className = "col-sm-3 d-flex justify-content-center square"; // Set the class name
 
         const img = document.createElement("img"); // Create a new img element
         img.src = item.media_url; // Set the src attribute to the media_url of the item
