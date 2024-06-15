@@ -5,6 +5,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin, Flip);
 
 document.addEventListener("DOMContentLoaded", function () {
+  // instagram api
   fetch("https://clownfish-app-pzszz.ondigitalocean.app/api")
     .then((response) => {
       if (!response.ok) {
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       data.data.slice(0, 4).forEach((item) => {
         // Loop through the first 4 items
         const colDiv = document.createElement("div"); // Create a new div element
-        colDiv.className = "col-sm-3 d-flex justify-content-center square"; // Set the class name
+        colDiv.className = "col-md-3 d-flex justify-content-center square"; // Set the class name
 
         const img = document.createElement("img"); // Create a new img element
         img.src = item.media_url; // Set the src attribute to the media_url of the item
@@ -36,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function () {
         error
       );
     });
-  if (window.matchMedia("(min-width: 768px)").matches) {
-    var tl = gsap.timeline();
+  // if (window.matchMedia("(min-width: 768px)").matches) {
+  var tl = gsap.timeline();
 
-    tl.to(".loader-wrapper", {
-      duration: 3.5,
-      ease: "power1.inOut",
-      opacity: 0,
-    });
-  }
+  tl.to(".loader-wrapper", {
+    duration: 3.5,
+    ease: "power1.inOut",
+    opacity: 0,
+  });
+  // }
 });
