@@ -294,3 +294,7 @@ h2 {
   opacity: 0.5;
   color: var(--off-white);
 }
+
+.read-more {
+  margin-bottom: 2rem;
+}
