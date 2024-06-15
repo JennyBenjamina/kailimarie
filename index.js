@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         error
       );
     });
-  // if (window.matchMedia("(min-width: 768px)").matches) {
+
   var tl = gsap.timeline();
 
   tl.to(".loader-wrapper", {
@@ -45,5 +45,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ease: "power1.inOut",
     opacity: 0,
   });
-  // }
+});
+
+// read more
+document.querySelectorAll(".read-more").forEach((button) => {
+  button.addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    const moreText = this.previousElementSibling.querySelector(".more-text");
+    if (moreText.style.display === "none") {
+      moreText.style.display = "inline";
+      this.textContent = "Read Less";
+    } else {
+      moreText.style.display = "none";
+      this.textContent = "Read More";
+    }
+  });
 });

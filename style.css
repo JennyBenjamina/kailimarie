@@ -15,12 +15,7 @@ body {
   position: relative;
   z-index: 1;
   background: #1b0c1a !important;
-  font-family: "Petit Formal Script", cursive !important;
-  /* background: linear-gradient(
-    120deg,
-    var(--primary-color) 13.57%,
-    var(--secondary-color) 98.38%
-  ); */
+
   scroll-behavior: none;
   width: 100%;
   height: 100vh;
@@ -31,6 +26,11 @@ body {
   position: relative;
   height: 50vh;
   width: 100%;
+}
+
+header,
+footer {
+  font-family: "Petit Formal Script", cursive !important;
 }
 
 .title {
@@ -47,55 +47,6 @@ body {
   overflow: hidden;
   padding-bottom: 20px;
   color: rgba(255, 255, 255, 0.7);
-}
-
-.accordions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 20vh;
-}
-
-.accordion {
-  background: linear-gradient(
-    200deg,
-    rgb(29, 145, 252) 13.57%,
-    rgb(90, 54, 192) 98.38%
-  );
-  width: max(50vw, 280px);
-  padding: 25px 30px 10px;
-  border-radius: 15px;
-  margin-bottom: 40px;
-  box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.3);
-
-  &:nth-child(2) {
-    background: linear-gradient(
-      200deg,
-      rgb(242, 136, 133) 13.57%,
-      rgb(233, 79, 102) 98.38%
-    );
-  }
-
-  &:nth-child(3) {
-    background: linear-gradient(
-      200deg,
-      rgb(101, 187, 118) 13.57%,
-      rgb(70, 111, 171) 98.38%
-    );
-  }
-
-  &:nth-child(4) {
-    background: linear-gradient(200deg, #c215d1 13.57%, #9813a1 98.38%);
-  }
-}
-
-@media (max-width: 480px) {
-  .accordion {
-    padding: 15px 20px 8px;
-  }
-  .title {
-    font-size: 20px;
-  }
 }
 
 /* boxes */
@@ -120,18 +71,6 @@ label {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.purple {
-  background-color: rgb(125, 70, 150);
-}
-
-.green {
-  background-color: rgb(70, 150, 125);
-}
-
-.orange {
-  background-color: rgb(242, 136, 133);
 }
 
 /* header */
@@ -183,7 +122,7 @@ label {
 
 .footer_component {
   color: var(--white);
-  /* position: fixed; */
+
   bottom: 0;
   left: 0;
   right: 0;
@@ -229,55 +168,10 @@ footer * {
   align-self: end;
 }
 
-/* test */
-
 h1,
 h2 {
   font-weight: 400;
   max-width: none;
-}
-
-.comparisonSection {
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  padding-bottom: 56.25%; /* to maintain aspect ratio (responsive!) */
-}
-.comparisonImage {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-}
-
-.comparisonImage::before {
-  content: ""; /* Necessary for the pseudo-element to show */
-  position: absolute; /* Position it over the .comparisonImage element */
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-}
-
-.afterImage {
-  position: absolute;
-  overflow: hidden;
-  top: 0;
-  transform: translate(100%, 0px);
-}
-.afterImage img {
-  transform: translate(-100%, 0px);
-}
-
-.comparisonImage img {
-  width: 100%;
-  height: 100%;
-  /* position: absolute; */
-  top: 0;
-  left: 0;
 }
 
 /* loader */
@@ -294,47 +188,31 @@ h2 {
   align-items: center;
 }
 
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid purple; /* Blue */
-  border-radius: 50%;
-  width: 90px;
-  height: 90px;
-  animation: spin 2s linear infinite;
-  position: fixed;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* bee */
-#bee-scroll {
-  opacity: 0;
+.image-container {
   position: relative;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  /* margin-top: 100vh; */
+  width: 100%;
+  padding-top: 100%; /* 16:9 Aspect Ratio */
+  /* Adjust the padding-top value to change the aspect ratio */
 }
 
 /* .image-path {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: auto;
   z-index: 500;
   position: relative;
 } */
 
 .image-path {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: auto;
-  z-index: 500;
-  position: relative;
+  height: 100%;
+  object-fit: cover; /* This will cover the area of the container without losing the aspect ratio */
+}
+
+.more-text {
+  display: none;
 }
 
 .hero {
@@ -360,20 +238,11 @@ h2 {
 }
 
 .author-info {
-  /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", */
-  /* "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
-  /* max-width: 800px; */
-  /* margin: 0 auto; */
   line-height: 1.5;
   padding: 20px;
   color: white;
   width: 100%;
 }
-
-/* .content-wrapper {
-  height: auto;
-  position: relative;
-} */
 
 .container-img {
   position: absolute;
@@ -402,10 +271,6 @@ h2 {
 
 /* card */
 
-.books {
-  /* background-color: hotpink; */
-}
-
 .card {
   min-width: 100%;
   min-height: 100%;
@@ -414,6 +279,18 @@ h2 {
   border: none !important;
 }
 
-/* .square {
-  aspect-ratio: 1 / 1;
-} */
+.link-to-book {
+  display: block;
+  text-decoration: none;
+  color: var(--off-white);
+  cursor: pointer;
+  transition: opacity 0.25s;
+  opacity: 1;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.link-to-book:hover {
+  opacity: 0.5;
+  color: var(--off-white);
+}
