@@ -298,3 +298,82 @@ h2 {
 .read-more {
   margin-bottom: 2rem;
 }
+
+/* art gallery */
+
+.masonry-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.masonry-gallery a {
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.masonry-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.masonry-gallery a:hover img {
+  transform: scale(1.03);
+}
+
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 4px;
+  font-weight: 500;
+}
+
+/* instagram icon */
+.instagram-icon-link:hover .instagram-icon-svg {
+  transform: scale(1.2);
+  fill: #e1306c; /* Instagram pink, or any color you like */
+}
+
+/* Always show arrows in Lightbox */
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+  opacity: 1 !important;
+  visibility: visible !important;
+  width: 80px;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease;
+}
+
+.lb-nav a.lb-prev:hover,
+.lb-nav a.lb-next:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.lb-nav a.lb-prev {
+  left: 0 !important;
+}
+
+.lb-nav a.lb-next {
+  right: 0 !important;
+}
+
+/* Optional: Make the arrow icons larger */
+.lb-prev span,
+.lb-next span {
+  font-size: 48px;
+  color: white;
+  line-height: 100vh;
+}
